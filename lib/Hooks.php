@@ -50,7 +50,7 @@ class Hooks {
      *
      * @param array $params - hook param
      */
-    public static function fileVersionDelete($params) {
+    public static function fileVersionDelete(array $params): void {
         $pathVersion = $params["path"];
         if (empty($pathVersion)) {
             return;
