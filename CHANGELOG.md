@@ -1,5 +1,9 @@
 # Change Log
 
+##
+## Changed
+- Nextcloud v31 is no longer supported
+
 ## 9.13.0
 ## Changed
 - support formats DocumentServer v9.3
