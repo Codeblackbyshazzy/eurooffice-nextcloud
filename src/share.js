@@ -26,7 +26,6 @@
  *
  */
 
-/* eslint-disable import/no-webpack-loader-syntax */
 /* eslint-disable import/no-unresolved */
 
 /* global _, jQuery */
