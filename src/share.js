@@ -31,7 +31,7 @@
 
 /* global _, jQuery */
 
-import AppDarkSvg from '!!raw-loader!../img/app-dark.svg';
+import AppDarkSvg from '../img/app-dark.svg?raw';
 
 /**
  * @param {object} $ JQueryStatic object
