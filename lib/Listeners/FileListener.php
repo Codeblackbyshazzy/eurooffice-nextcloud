@@ -51,7 +51,8 @@ class FileListener implements IEventListener {
     public function __construct(
         private readonly IManager $shareManager,
         private readonly LoggerInterface $logger,
-        private readonly ExtraPermissions $extraPermissions
+        private readonly ExtraPermissions $extraPermissions,
+        private readonly KeyManager $keyManager
     ) {}
 
     public function handle(Event $event): void {
@@ -84,7 +85,7 @@ class FileListener implements IEventListener {
         }
 
         try {
-            KeyManager::delete($node->getId());
+            $this->keyManager->delete($node->getId());
         } catch (Exception $e) {
             $this->logger->error(
                 "NodeWrittenEvent: deleting key for file {$node->getId()}",
@@ -125,7 +126,7 @@ class FileListener implements IEventListener {
 
     private function deleteKeyForFile(File $file): void {
         try {
-            KeyManager::delete($file->getId(), true);
+            $this->keyManager->delete($file->getId(), true);
         } catch (Exception $e) {
             $this->logger->error(
                 "NodeDeletedEvent: deleting key for file {$file->getId()}",
