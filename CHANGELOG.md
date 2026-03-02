@@ -2,6 +2,7 @@
 
 ##
 ## Changed
+- migrated from legacy hooks to event listeners
 - fixed opening editor for shared link
 - Nextcloud v31 is no longer supported
 
