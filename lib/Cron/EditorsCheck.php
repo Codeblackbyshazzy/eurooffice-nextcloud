@@ -30,7 +30,6 @@
 namespace OCA\Onlyoffice\Cron;
 
 use OCA\Onlyoffice\AppConfig;
-use OCA\Onlyoffice\Crypt;
 use OCA\Onlyoffice\DocumentService;
 use OCA\Onlyoffice\EmailManager;
 use OCP\AppFramework\Utility\ITimeFactory;
@@ -54,7 +53,6 @@ class EditorsCheck extends TimedJob {
         private readonly IURLGenerator $urlGenerator,
         private readonly AppConfig $appConfig,
         private readonly IL10N $trans,
-        private readonly Crypt $crypt,
         private readonly IGroupManager $groupManager,
         private readonly EmailManager $emailManager,
         private readonly LoggerInterface $logger,
