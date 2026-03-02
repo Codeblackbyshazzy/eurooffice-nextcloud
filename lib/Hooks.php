@@ -43,9 +43,6 @@ class Hooks {
     public static function connectHooks() {
         // Listen file version deletion
         Util::connectHook("\OCP\Versions", "preDelete", Hooks::class, "fileVersionDelete");
-
-        // Listen file version restore
-        Util::connectHook("\OCP\Versions", "rollback", Hooks::class, "fileVersionRestore");
     }
 
     /**
