@@ -81,45 +81,4 @@ class Hooks {
             \OCP\Log\logger('onlyoffice')->error("Hook: fileVersionDelete " . json_encode($params), ['exception' => $e]);
         }
     }
-
-    /**
-     * Erase versions of restored version of file
-     *
-     * @param array $params - hook param
-     */
-    public static function fileVersionRestore($params) {
-        $node = $params["node"];
-
-        if (empty($node) || !($node instanceof File)) {
-            return;
-        }
-
-        $filePath = preg_replace('/^\/\w+\/files\//', '', $params["node"]->getPath());
-        if (empty($filePath)) {
-            return;
-        }
-
-        $versionId = $params["revision"];
-
-        try {
-            $fileInfo = Filesystem::getFileInfo($filePath);
-            if ($fileInfo === false) {
-                return;
-            }
-
-            $owner = $fileInfo->getOwner();
-            if (empty($owner)) {
-                return;
-            }
-            $ownerId = $owner->getUID();
-
-            $fileId = $fileInfo->getId();
-
-            KeyManager::delete($fileId);
-
-            FileVersions::deleteVersion($ownerId, $fileInfo, $versionId);
-        } catch (\Exception $e) {
-            \OCP\Log\logger('onlyoffice')->error("Hook: fileVersionRestore " . json_encode($params), ['exception' => $e]);
-        }
-    }
 }
