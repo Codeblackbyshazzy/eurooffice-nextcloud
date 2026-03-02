@@ -74,20 +74,6 @@ use Psr\Log\LoggerInterface;
  */
 class EditorController extends Controller {
 
-    /**
-     * File version manager
-     *
-     * @var IVersionManager
-     */
-    private $versionManager;
-
-    /**
-     * Folder manager
-     *
-     * @var FolderManager
-     */
-    private $folderManager;
-
     public function __construct(
         string $appName,
         IRequest $request,
@@ -105,17 +91,11 @@ class EditorController extends Controller {
         private readonly IAvatarManager $avatarManager,
         private readonly EmailManager $emailManager,
         private readonly DocumentService $documentService,
-        private readonly KeyManager $keyManager
+        private readonly KeyManager $keyManager,
+        private readonly ?IVersionManager $versionManager,
+        private readonly ?FolderManager $folderManager
     ) {
         parent::__construct($appName, $request);
-
-        $appManager = Server::get(\OCP\App\IAppManager::class);
-        $this->versionManager = $appManager->isEnabledForAnyone("files_versions")
-            ? Server::get(IVersionManager::class)
-            : null;
-        $this->folderManager = $appManager->isEnabledForAnyone("groupfolders")
-            ? Server::get(FolderManager::class)
-            : null;
     }
 
     /**

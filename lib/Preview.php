@@ -40,8 +40,6 @@ use OCP\Image;
 use OCP\IURLGenerator;
 use OCP\IUser;
 use OCP\Preview\IProviderV2;
-use OCP\Server;
-use Psr\Container\NotFoundExceptionInterface;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -50,13 +48,6 @@ use Psr\Log\LoggerInterface;
  * @package OCA\Onlyoffice
  */
 class Preview implements IProviderV2 {
-
-    /**
-     * File version manager
-     *
-     * @var IVersionManager
-     */
-    private $versionManager;
 
     /**
      * Capabilities mimetype
@@ -107,16 +98,9 @@ class Preview implements IProviderV2 {
         private readonly IURLGenerator $urlGenerator,
         private readonly Crypt $crypt,
         private readonly FileUtility $fileUtility,
-        private readonly DocumentService $documentService
-    ) {
-        if (Server::get(\OCP\App\IAppManager::class)->isEnabledForAnyone("files_versions")) {
-            try {
-                $this->versionManager = Server::get(IVersionManager::class);
-            } catch (NotFoundExceptionInterface $e) {
-                $this->logger->error("VersionManager init error", ["exception" => $e]);
-            }
-        }
-    }
+        private readonly DocumentService $documentService,
+        private readonly ?IVersionManager $versionManager
+    ) {}
 
     /**
      * Return mime type

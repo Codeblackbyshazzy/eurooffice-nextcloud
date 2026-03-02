@@ -32,11 +32,9 @@ namespace OCA\Onlyoffice;
 use OCA\Talk\Manager as TalkManager;
 use OCP\Constants;
 use OCP\IDBConnection;
-use OCP\Server;
 use OCP\Share\Exceptions\ShareNotFound;
 use OCP\Share\IManager;
 use OCP\Share\IShare;
-use Psr\Container\NotFoundExceptionInterface;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -45,13 +43,6 @@ use Psr\Log\LoggerInterface;
  * @package OCA\Onlyoffice
  */
 class ExtraPermissions {
-
-    /**
-     * Talk manager
-     *
-     * @var TalkManager
-     */
-    private $talkManager;
 
     /**
      * Table name
@@ -73,16 +64,9 @@ class ExtraPermissions {
         private readonly LoggerInterface $logger,
         private readonly IManager $shareManager,
         private readonly AppConfig $appConfig,
-        private readonly IDBConnection $connection
-    ) {
-        if (Server::get(\OCP\App\IAppManager::class)->isEnabledForAnyone("spreed")) {
-            try {
-                $this->talkManager = Server::get(Talkmanager::class);
-            } catch (NotFoundExceptionInterface $e) {
-                $this->logger->error("TalkManager init error", ["exception" => $e]);
-            }
-        }
-    }
+        private readonly IDBConnection $connection,
+        private readonly ?TalkManager $talkManager,
+    ) {}
 
     /**
      * Get extra permissions by shareId

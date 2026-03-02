@@ -41,7 +41,6 @@ use OCP\Files\File;
 use OCP\Files\IRootFolder;
 use OCP\IRequest;
 use OCP\IUserSession;
-use OCP\Server;
 use OCP\Share\IManager;
 use OCP\Share\IShare;
 use Psr\Log\LoggerInterface;
@@ -51,11 +50,6 @@ use Psr\Log\LoggerInterface;
  */
 class SharingApiController extends OCSController {
 
-    /**
-     * Extra permissions
-     */
-    private ?ExtraPermissions $extraPermissions;
-
     public function __construct(
         string $appName,
         IRequest $request,
@@ -63,14 +57,10 @@ class SharingApiController extends OCSController {
         private readonly LoggerInterface $logger,
         private readonly IUserSession $userSession,
         private readonly IManager $shareManager,
-        private readonly AppConfig $appConfig
+        private readonly AppConfig $appConfig,
+        private readonly ExtraPermissions $extraPermissions
     ) {
         parent::__construct($appName, $request);
-
-        $this->extraPermissions = $this->appConfig->getAdvanced()
-            && Server::get(\OCP\App\IAppManager::class)->isEnabledForAnyone("files_sharing")
-            ? Server::get(ExtraPermissions::class)
-            : null;
     }
 
     /**
@@ -83,7 +73,7 @@ class SharingApiController extends OCSController {
     #[NoAdminRequired]
     #[NoCSRFRequired]
     public function getShares(int $fileId): DataResponse {
-        if ($this->extraPermissions === null) {
+        if (!$this->appConfig->getAdvanced()) {
             $this->logger->debug("extraPermissions isn't init");
             return new DataResponse([], Http::STATUS_BAD_REQUEST);
         }
@@ -120,7 +110,7 @@ class SharingApiController extends OCSController {
     #[NoAdminRequired]
     #[NoCSRFRequired]
     public function setShares(int $extraId, string $shareId, int $fileId, int $permissions): DataResponse {
-        if ($this->extraPermissions === null) {
+        if (!$this->appConfig->getAdvanced()) {
             $this->logger->debug("extraPermissions isn't init");
             return new DataResponse([], Http::STATUS_BAD_REQUEST);
         }

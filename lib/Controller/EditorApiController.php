@@ -68,11 +68,6 @@ use Psr\Log\LoggerInterface;
 class EditorApiController extends OCSController {
 
     /**
-     * Extra permissions
-     */
-    private ?ExtraPermissions $extraPermissions = null;
-
-    /**
      * Mobile regex from https://github.com/ONLYOFFICE/CommunityServer/blob/v9.1.1/web/studio/ASC.Web.Studio/web.appsettings.config#L35
      */
     public const USER_AGENT_MOBILE = "/android|avantgo|playbook|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od|ad)|iris|kindle|lge |maemo|midp|mmp|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\\/|plucker|pocket|psp|symbian|treo|up\\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i";
@@ -92,14 +87,10 @@ class EditorApiController extends OCSController {
         private readonly ILockManager $lockManager,
         private readonly TimezoneService $timezoneService,
         private readonly FileUtility $fileUtility,
-        private readonly IAvatarManager $avatarManager
+        private readonly IAvatarManager $avatarManager,
+        private readonly ExtraPermissions $extraPermissions
     ) {
         parent::__construct($appName, $request);
-
-        if ($this->appConfig->getAdvanced()
-            && Server::get(\OCP\App\IAppManager::class)->isEnabledForAnyone("files_sharing")) {
-            $this->extraPermissions = Server::get(ExtraPermissions::class);
-        }
     }
 
     /**
@@ -228,7 +219,7 @@ class EditorApiController extends OCSController {
         if ($fileStorage->instanceOfStorage(\OCA\Files_Sharing\SharedStorage::class) || !empty($shareToken)) {
             $shareId = empty($share) ? $fileStorage->getShareId() : $share->getId();
             $extraPermissions = null;
-            if ($this->extraPermissions instanceof ExtraPermissions) {
+            if ($this->appConfig->getAdvanced()) {
                 $extraPermissions = $this->extraPermissions->getExtra($shareId);
             }
 
