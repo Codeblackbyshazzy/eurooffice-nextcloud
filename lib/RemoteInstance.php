@@ -69,7 +69,7 @@ class RemoteInstance {
      *
      * @return array
      */
-    private static function get(string $remote) {
+    private static function get(string $remote): ?array {
         $connection = Server::get(IDBConnection::class);
         $select = $connection->prepare("
             SELECT remote, expire, status
@@ -120,7 +120,7 @@ class RemoteInstance {
      *
      * @return bool
      */
-    public static function healthCheck(string $remote) {
+    public static function healthCheck(string $remote): bool {
         $logger = \OCP\Log\logger('onlyoffice');
         $remote = rtrim($remote, "/") . "/";
 
@@ -173,7 +173,7 @@ class RemoteInstance {
      *
      * @return string
      */
-    public static function getRemoteKey(File $file) {
+    public static function getRemoteKey(File $file): ?string {
         $logger = \OCP\Log\logger('onlyoffice');
 
         $remote = rtrim((string) $file->getStorage()->getRemote(), "/") . "/";
@@ -225,7 +225,7 @@ class RemoteInstance {
      *
      * @return bool
      */
-    public static function lockRemoteKey($file, $lock, $fs) {
+    public static function lockRemoteKey(File $file, bool $lock, bool $fs): bool {
         $logger = \OCP\Log\logger('onlyoffice');
         $action = $lock ? "lock" : "unlock";
 
@@ -266,16 +266,13 @@ class RemoteInstance {
             $logger->error("Failed to request federated " . $action . " for " . $file->getId(), ['exception' => $e]);
             return false;
         }
+        return true;
     }
 
     /**
      * Check of federated capable
-     *
-     * @param File $file - file
-     *
-     * @return bool
      */
-    public static function isRemoteFile($file) {
+    public static function isRemoteFile(File $file): bool {
         /**
          * @var \OCP\Files\Storage\IStorage|SharingExternalStorage
          */

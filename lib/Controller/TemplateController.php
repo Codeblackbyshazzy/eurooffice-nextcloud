@@ -154,7 +154,7 @@ class TemplateController extends Controller {
     /**
      * Returns the origin document key for editor
      *
-     * @param string $fileId - file identifier
+     * @param int $fileId - file identifier
      * @param int $x - x
      * @param int $y - y
      * @param bool $crop - crop

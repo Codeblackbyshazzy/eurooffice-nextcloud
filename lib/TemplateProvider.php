@@ -67,7 +67,7 @@ class TemplateProvider implements ICustomTemplateProvider {
     /**
      * Return the file for a given template id
      */
-    public function getCustomTemplate(string $templateId) : File {
-        return TemplateManager::getTemplate($templateId);
+    public function getCustomTemplate(string $templateId): File {
+        return TemplateManager::getTemplate((int)$templateId);
     }
 }

@@ -80,7 +80,7 @@ class TemplateManager {
      *
      * @return array
      */
-    public static function getGlobalTemplates($mimetype = null): array {
+    public static function getGlobalTemplates(?string $mimetype = null): array {
         $templateDir = self::getGlobalTemplateDir();
 
         $templatesList = $templateDir->getDirectoryListing();
@@ -94,12 +94,8 @@ class TemplateManager {
 
     /**
      * Get template file
-     *
-     * @param string $templateId - identifier of the template
-     *
-     * @return ?File
      */
-    public static function getTemplate($templateId) {
+    public static function getTemplate(int $templateId): ?File {
         $logger = \OCP\Log\logger('onlyoffice');
 
         if (empty($templateId)) {
@@ -161,10 +157,8 @@ class TemplateManager {
 
     /**
      * Check file if it's template
-     *
-     * @param int $fileId - identifier file
      */
-    public static function isTemplate($fileId): bool {
+    public static function isTemplate(int $fileId): bool {
         $template = self::getTemplate($fileId);
         return !empty($template);
     }

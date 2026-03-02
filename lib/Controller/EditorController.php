@@ -103,7 +103,7 @@ class EditorController extends Controller {
      *
      * @param string $name - file name
      * @param string $dir - folder path
-     * @param string $templateId - file identifier
+     * @param ?int $templateId - file identifier
      * @param int $targetId - identifier of the file for using as template for create
      * @param string $shareToken - access token
      *
@@ -114,7 +114,7 @@ class EditorController extends Controller {
     public function create(
         string $name,
         string $dir,
-        ?string $templateId = null,
+        ?int $templateId = null,
         int $targetId = 0,
         ?string $shareToken = null
     ): DataResponse {
@@ -217,13 +217,13 @@ class EditorController extends Controller {
      *
      * @param string $name - file name
      * @param string $dir - folder path
-     * @param string $templateId - file identifier
+     * @param ?int $templateId - file identifier
      *
      * @return TemplateResponse|RedirectResponse
      */
     #[NoAdminRequired]
     #[NoCSRFRequired]
-    public function createNew(string $name, string $dir, ?string $templateId = null): TemplateResponse|RedirectResponse {
+    public function createNew(string $name, string $dir, ?int $templateId = null): TemplateResponse|RedirectResponse {
         $this->logger->debug("Create from editor: $name in $dir");
 
         $response = $this->create($name, $dir, $templateId);

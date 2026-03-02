@@ -495,7 +495,7 @@ class CallbackController extends Controller {
                     $prevIsForcesave = $this->keyManager->wasForcesave($fileId);
 
                     if (RemoteInstance::isRemoteFile($file)) {
-                        $isLock = RemoteInstance::lockRemoteKey($file, $isForcesave, null);
+                        $isLock = RemoteInstance::lockRemoteKey($file, $isForcesave, false);
                         if ($isForcesave && !$isLock) {
                             break;
                         }

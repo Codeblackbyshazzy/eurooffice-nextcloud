@@ -148,7 +148,7 @@ class FileVersions {
      *
      * @return array
      */
-    public static function getHistoryData($ownerId, $fileInfo, string $versionId, $prevVersion) {
+    public static function getHistoryData(?string $ownerId, ?FileInfo $fileInfo, string $versionId, ?string $prevVersion): ?array {
         $logger = \OCP\Log\logger('onlyoffice');
 
         if ($ownerId === null || $fileInfo === null) {
@@ -258,7 +258,7 @@ class FileVersions {
      * @param string $changes - file changes
      * @param string $prevVersion - previous version for check
      */
-    public static function saveHistory(?FileInfo $fileInfo, $history, $changes, $prevVersion): void {
+    public static function saveHistory(?FileInfo $fileInfo, ?array $history, ?string $changes, ?string $prevVersion): void {
         $logger = \OCP\Log\logger('onlyoffice');
 
         if ($fileInfo === null) {
@@ -441,7 +441,7 @@ class FileVersions {
      *
      * @return array
      */
-    public static function getAuthor(?string $ownerId, ?FileInfo $fileInfo, string $versionId) {
+    public static function getAuthor(?string $ownerId, ?FileInfo $fileInfo, string $versionId): ?array {
         if ($ownerId === null || $fileInfo === null) {
             return null;
         }

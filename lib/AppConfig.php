@@ -313,7 +313,7 @@ class AppConfig {
      *
      * @return string
      */
-    public function getSystemValue($key, $system = false) {
+    public function getSystemValue(string $key, bool $system = false) {
         if ($system) {
             return $this->config->getSystemValue($key);
         }

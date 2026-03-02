@@ -218,7 +218,7 @@ class FileUtility {
      *
      * @return bool
      */
-    public static function canShareDownload(IShare $share) {
+    public static function canShareDownload(IShare $share): bool {
         $can = true;
 
         $downloadAttribute = self::getShareAttrubute($share, "download");
