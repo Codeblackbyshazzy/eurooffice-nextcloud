@@ -30,7 +30,6 @@
 namespace OCA\Onlyoffice;
 
 use OC\Files\Filesystem;
-use OC\Files\Node\File;
 use OCP\Util;
 
 /**

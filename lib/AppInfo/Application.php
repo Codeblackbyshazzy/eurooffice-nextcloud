@@ -63,7 +63,6 @@ use OCA\Onlyoffice\Listeners\UserListener;
 use OCA\Onlyoffice\Notifier;
 use OCA\Onlyoffice\Preview;
 use OCA\Onlyoffice\TemplateProvider;
-use OCA\Onlyoffice\SettingsData;
 use OCP\Files\Events\Node\NodeDeletedEvent;
 use OCP\Files\Events\Node\NodeWrittenEvent;
 use OCP\Share\Events\ShareDeletedEvent;
