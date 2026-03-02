@@ -51,6 +51,7 @@ class FileListener implements IEventListener {
     public function __construct(
         private readonly IManager $shareManager,
         private readonly LoggerInterface $logger,
+        private readonly ExtraPermissions $extraPermissions
     ) {}
 
     public function handle(Event $event): void {
@@ -112,7 +113,7 @@ class FileListener implements IEventListener {
 
         try {
             if ($shareIds !== []) {
-                ExtraPermissions::deleteList($shareIds);
+                $this->extraPermissions->deleteList($shareIds);
             }
         } catch (Exception $e) {
             $this->logger->error(
