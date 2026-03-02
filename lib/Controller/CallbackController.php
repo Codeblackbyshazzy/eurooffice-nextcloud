@@ -29,6 +29,7 @@
 
 namespace OCA\Onlyoffice\Controller;
 
+use OC\Files\SetupManager;
 use OCA\Files_Versions\Versions\IVersionManager;
 use OCA\Onlyoffice\AppConfig;
 use OCA\Onlyoffice\Crypt;
@@ -101,7 +102,8 @@ class CallbackController extends Controller {
         private readonly IEventDispatcher $eventDispatcher,
         private readonly ?IVersionManager $versionManager,
         private readonly DocumentService $documentService,
-        private readonly KeyManager $keyManager
+        private readonly KeyManager $keyManager,
+        private readonly SetupManager $setupManager
     ) {
         parent::__construct($appName, $request);
     }
@@ -160,7 +162,7 @@ class CallbackController extends Controller {
             $this->logger->debug("Download: by $userId instead of " . $hashData->userId);
         }
 
-        \OC_Util::tearDownFS();
+        $this->setupManager->tearDown();
 
         if (isset($hashData->userId)) {
             $userId = $hashData->userId;
@@ -168,7 +170,7 @@ class CallbackController extends Controller {
             $user = $this->userManager->get($userId);
             if (!empty($user)) {
                 \OC_User::setUserId($userId);
-                \OC_Util::setupFS($userId);
+                $this->setupManager->setupForUser($user);
             }
         }
 
@@ -201,7 +203,7 @@ class CallbackController extends Controller {
         if (empty($user)) {
             $owner = $file->getFileInfo()->getOwner();
             if ($owner !== null) {
-                \OC_Util::setupFS($owner->getUID());
+                $this->setupManager->setupForUser($owner);
             }
         }
 
@@ -394,7 +396,7 @@ class CallbackController extends Controller {
         $shareToken = $hashData->shareToken ?? null;
         $filePath = $hashData->filePath;
 
-        \OC_Util::tearDownFS();
+        $this->setupManager->tearDown();
 
         $isForcesave = $status === self::TRACKERSTATUS_FORCESAVE || $status === self::TRACKERSTATUS_CORRUPTEDFORCESAVE;
 
@@ -446,8 +448,8 @@ class CallbackController extends Controller {
             }
         }
 
-        if (!empty($userId) && empty($shareToken)) {
-            \OC_Util::setupFS($userId);
+        if (!empty($userId) && empty($shareToken) && ($setupUser = $this->userManager->get($userId))) {
+            $this->setupManager->setupForUser($setupUser);
         }
 
         [$file, $error, $share] = empty($shareToken) ? $this->getFile($userId, $fileId, $filePath) : $this->getFileByToken($fileId, $shareToken);
