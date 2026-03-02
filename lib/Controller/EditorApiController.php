@@ -401,20 +401,13 @@ class EditorApiController extends OCSController {
                 }
             }
 
-            switch ($params["documentType"]) {
-                case "word":
-                    $createName = $this->trans->t("New document") . ".docx";
-                    break;
-                case "cell":
-                    $createName = $this->trans->t("New spreadsheet") . ".xlsx";
-                    break;
-                case "slide":
-                    $createName = $this->trans->t("New presentation") . ".pptx";
-                    break;
-                case "pdf":
-                    $createName = $this->trans->t("New PDF form") . ".pdf";
-                    break;
-            }
+            $createName = match ($params["documentType"]) {
+                "word" => $this->trans->t("New document") . ".docx",
+                "cell" => $this->trans->t("New spreadsheet") . ".xlsx",
+                "slide" => $this->trans->t("New presentation") . ".pptx",
+                "pdf" => $this->trans->t("New PDF form") . ".pdf",
+                default => null,
+            };
 
             if (!empty($createName)) {
                 $createParam["name"] = $createName;

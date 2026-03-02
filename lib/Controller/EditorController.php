@@ -694,15 +694,11 @@ class EditorController extends Controller {
             return new DataResponse(["error" => $this->trans->t("Conversion is not required")]);
         }
 
-        $internalExtension = "docx";
-        switch ($format["type"]) {
-            case "cell":
-                $internalExtension = "xlsx";
-                break;
-            case "slide":
-                $internalExtension = "pptx";
-                break;
-        }
+        $internalExtension = match ($format["type"]) {
+            "cell" => "xlsx",
+            "slide" => "pptx",
+            default => "docx",
+        };
 
         $newFileUri = null;
         $key = $this->fileUtility->getKey($file);
