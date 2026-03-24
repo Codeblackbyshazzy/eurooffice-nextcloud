@@ -1121,9 +1121,9 @@ class EditorController extends Controller {
         $userId = $user->getUID();
         $userFolder = $this->root->getUserFolder($userId);
 
-        $file = $userFolder->get($filePath);
-
-        if ($file === null) {
+        try {
+            $file = $userFolder->get($filePath);
+        } catch (\OCP\Files\NotFoundException) {
             $this->logger->error("File for generate presigned url was not found: $filePath");
             return new DataResponse(["error" => $this->trans->t("File not found")]);
         }
