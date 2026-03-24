@@ -1520,9 +1520,10 @@ class EditorController extends Controller {
      * @param string $userId - current user identifier
      */
     private function getUserId(string $userId): string {
-        if (str_contains($userId, "_")) {
-            $userIdExp = explode("_", $userId);
-            $userId = end($userIdExp);
+        $instanceId = $this->appConfig->getSystemValue("instanceid", true);
+        $prefix = $instanceId . "_";
+        if (str_starts_with($userId, $prefix)) {
+            return substr($userId, strlen($prefix));
         }
         return $userId;
     }
