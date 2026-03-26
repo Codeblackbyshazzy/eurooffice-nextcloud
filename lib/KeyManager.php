@@ -27,14 +27,14 @@
  *
  */
 
-namespace OCA\Onlyoffice;
+namespace OCA\Eurooffice;
 
 use OCP\IDBConnection;
 
 /**
  * Key manager
  *
- * @package OCA\Onlyoffice
+ * @package OCA\Eurooffice
  */
 class KeyManager {
 
@@ -43,7 +43,7 @@ class KeyManager {
     /**
      * Table name
      */
-    private const TABLENAME_KEY = "onlyoffice_filekey";
+    private const TABLENAME_KEY = "eurooffice_filekey";
 
     /**
      * Get document identifier by file id

@@ -1,6 +1,6 @@
-# ![](screenshots/icon.png) ONLYOFFICE app for Nextcloud
+# ![](screenshots/icon.png) Euro-Office app for Nextcloud
 
-This app enables users to edit office documents from [Nextcloud](https://nextcloud.com) using ONLYOFFICE Docs packaged as Document Server - [Community or Enterprise Edition](#onlyoffice-docs-editions).
+This app enables users to edit office documents from [Nextcloud](https://nextcloud.com) using ONLYOFFICE Docs packaged as Document Server - [Community or Enterprise Edition](#eurooffice-docs-editions).
 
 ## Features ✨
 
@@ -50,7 +50,7 @@ To install free Community version, use [Docker](https://github.com/onlyoffice/Do
 
 To install Enterprise Edition, follow instructions [here](https://helpcenter.onlyoffice.com/docs/installation/enterprise).
 
-Community Edition vs Enterprise Edition comparison can be found [here](#onlyoffice-docs-editions).
+Community Edition vs Enterprise Edition comparison can be found [here](#eurooffice-docs-editions).
 
 To use ONLYOFFICE behind a proxy, please refer to [this article](https://helpcenter.onlyoffice.com/docs/installation/docs-community-proxy.aspx).
 
@@ -58,7 +58,7 @@ You can also use our **[Docker installation](https://github.com/ONLYOFFICE/docke
 
 Alternatively, you can opt for ONLYOFFICE Docs Cloud which doesn't require downloading and installation. To get ONLYOFFICE Docs Cloud, get started [here](https://www.onlyoffice.com/docs-registration?utm_source=github&utm_medium=cpc&utm_campaign=GitHubNextcloud).
 
-## Installing ONLYOFFICE app for Nextcloud 📥
+## Installing Euro-Office app for Nextcloud 📥
 
 The Nextcloud administrator can install the app from the in-built application market.
 For that go to the user name and select **Apps**.
@@ -72,7 +72,7 @@ To start using ONLYOFFICE Document Server with Nextcloud, the following steps mu
     ```bash
     cd apps/
     ```
-2. Get the ONLYOFFICE app for Nextcloud.
+2. Get the Euro-Office app for Nextcloud.
 There are several ways to do that:
 
     a. Download the latest signed version from the official store for [Nextcloud](https://apps.nextcloud.com/apps/onlyoffice).
@@ -82,7 +82,7 @@ There are several ways to do that:
     c. Or you can clone the application source code and compile it yourself:
     ```bash
     git clone https://github.com/ONLYOFFICE/onlyoffice-nextcloud.git onlyoffice
-    cd onlyoffice
+    cd eurooffice
     git submodule update --init --recursive
     ```
 3. Run the build (only if you chose to clone on the previous step):
@@ -96,11 +96,11 @@ There are several ways to do that:
     ```
 5. Change the owner to update the application right from Nextcloud web interface:
     ```bash
-    chown -R www-data:www-data onlyoffice
+    chown -R www-data:www-data eurooffice
     ```
 6. In Nextcloud open the `~/settings/apps/disabled` page with _Not enabled_ apps by administrator and click _Enable_ for the **ONLYOFFICE** application.
 
-## Configuring ONLYOFFICE app for Nextcloud 🛠️
+## Configuring Euro-Office app for Nextcloud 🛠️
 
 There are three ways to configure ONLYOFFICE integration settings in Nextcloud.
 
@@ -132,17 +132,17 @@ In the ONLYOFFICE Docs config file, specify the same secret key and enable the v
 Use the occ commands to set ONLYOFFICE settings for Nextcloud in the following way:
 
 ```sh
-php occ config:app:set onlyoffice {setting_key} --value={setting_value}
+php occ config:app:set eurooffice {setting_key} --value={setting_value}
 ```
 
 where `{setting_key}` is the key of the ONLYOFFICE integration setting, and `{setting_value}` is the corresponding value.
 
 ### config.php
 
-Directly define settings in the `config/config.php` file under the `'onlyoffice'` array:
+Directly define settings in the `config/config.php` file under the `'eurooffice'` array:
 
 ``` php
-"onlyoffice" => array (
+"eurooffice" => array (
     {setting_key} => {setting_value},
 )
 ```
@@ -210,7 +210,7 @@ The tables below list all available Nextcloud settings along with the supported 
 
 You can check the connection to ONLYOFFICE Document Server by using the following occ command:
 
-`occ onlyoffice:documentserver --check`
+`occ eurooffice:documentserver --check`
 
 You will see a text either with information about the successful connection or the cause of the error.
 
@@ -225,7 +225,7 @@ The Advanced tab allows you to grant additional access rights only to those user
 
 ## How it works ⚙️
 
-The ONLYOFFICE app follows the API documented here [api.onlyoffice.com](https://api.onlyoffice.com/?utm_source=github&utm_medium=cpc&utm_campaign=GitHubNextcloud):
+The Euro-Office app follows the API documented here [api.onlyoffice.com](https://api.onlyoffice.com/?utm_source=github&utm_medium=cpc&utm_campaign=GitHubNextcloud):
 
 * When creating a new file, the user navigates to a document folder within Nextcloud and clicks the **Document**, **Spreadsheet** or **Presentation** item in the _new_ (+) menu.
 
@@ -272,7 +272,7 @@ When the _Log-in credentials, save in session_ authentication type is used, the 
     Another option is to change the Nextcloud config file manually. Locate the Nextcloud config file (_/nextcloud/config/config.php_) and open it. Insert the following section to it:
 
     ```php
-    'onlyoffice' => array (
+    'eurooffice' => array (
         'verify_peer_off' => true
     )
     ```
@@ -284,14 +284,14 @@ When the _Log-in credentials, save in session_ authentication type is used, the 
 
     To solve this, we added an asynchronous background task which runs on the server to check availability of the editors. It allows testing the connection between your **Nextcloud instance** and **ONLYOFFICE Document Server**, namely availability of server addresses and the validity of the JWT secret are being checked.
 
-    If any issue is detected, the ONLYOFFICE app for Nextcloud (consequently, the ability to create and open files) will be disabled. As a Nextcloud admin, you will get the corresponding notification.
+    If any issue is detected, the Euro-Office app for Nextcloud (consequently, the ability to create and open files) will be disabled. As a Nextcloud admin, you will get the corresponding notification.
 
     This option allows you to avoid issues when the server settings become incorrect and require changes.
 
     By default, this background task runs once a day. If necessary, you can change the frequency. To do so, open the Nextcloud config file (_/nextcloud/config/config.php_). Insert the following section and enter the required value in minutes:
 
     ```php
-    'onlyoffice' => array (
+    'eurooffice' => array (
         'editors_check_interval' => 3624
     )
     ```

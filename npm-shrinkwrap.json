@@ -1,11 +1,11 @@
 {
-    "name": "onlyoffice",
+    "name": "eurooffice",
     "version": "9.13.0",
     "lockfileVersion": 3,
     "requires": true,
     "packages": {
         "": {
-            "name": "onlyoffice",
+            "name": "eurooffice",
             "version": "9.13.0",
             "license": "AGPL-3.0",
             "dependencies": {

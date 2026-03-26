@@ -27,13 +27,13 @@
  *
  */
 
-namespace OCA\Onlyoffice\Listeners;
+namespace OCA\Eurooffice\Listeners;
 
 use Exception;
 use OC\Files\Node\Node;
-use OCA\Onlyoffice\ExtraPermissions;
-use OCA\Onlyoffice\FileVersions;
-use OCA\Onlyoffice\KeyManager;
+use OCA\Eurooffice\ExtraPermissions;
+use OCA\Eurooffice\FileVersions;
+use OCA\Eurooffice\KeyManager;
 use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;
 use OCP\Files\Events\Node\NodeDeletedEvent;

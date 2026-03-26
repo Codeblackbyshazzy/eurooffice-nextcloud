@@ -27,12 +27,12 @@
  *
  */
 
-namespace OCA\Onlyoffice\Controller;
+namespace OCA\Eurooffice\Controller;
 
-use OCA\Onlyoffice\AppConfig;
-use OCA\Onlyoffice\DocumentService;
-use OCA\Onlyoffice\FileVersions;
-use OCA\Onlyoffice\TemplateManager;
+use OCA\Eurooffice\AppConfig;
+use OCA\Eurooffice\DocumentService;
+use OCA\Eurooffice\FileVersions;
+use OCA\Eurooffice\TemplateManager;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Http\TemplateResponse;
@@ -123,7 +123,7 @@ class SettingsController extends Controller {
     ): DataResponse {
         $error = null;
         if (!$this->appConfig->selectDemo($demo === true)) {
-            $error = $this->trans->t("The 30-day test period is over, you can no longer connect to demo ONLYOFFICE Docs server.");
+            $error = $this->trans->t("The 30-day test period is over, you can no longer connect to demo Euro-Office server.");
         }
         if ($demo !== true) {
             $this->appConfig->setDocumentServerUrl($documentserver);

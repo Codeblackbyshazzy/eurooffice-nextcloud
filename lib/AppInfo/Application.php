@@ -27,7 +27,7 @@
  *
  */
 
-namespace OCA\Onlyoffice\AppInfo;
+namespace OCA\Eurooffice\AppInfo;
 
 use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootContext;
@@ -44,25 +44,25 @@ use OCA\Files\Event\LoadAdditionalScriptsEvent;
 use OCA\Files_Sharing\Event\BeforeTemplateRenderedEvent;
 use OCA\Files_Versions\Events\VersionRestoredEvent;
 use OCA\Viewer\Event\LoadViewer;
-use OCA\Onlyoffice\AppConfig;
-use OCA\Onlyoffice\Controller\JobListController;
-use OCA\Onlyoffice\Listeners\CreateFromTemplateListener;
-use OCA\Onlyoffice\Listeners\FilesListener;
-use OCA\Onlyoffice\Listeners\FileSharingListener;
-use OCA\Onlyoffice\Listeners\DirectEditorListener;
-use OCA\Onlyoffice\Listeners\ViewerListener;
-use OCA\Onlyoffice\Listeners\WidgetListener;
-use OCA\Onlyoffice\Events\DocumentUnsavedEvent;
-use OCA\Onlyoffice\Hooks;
-use OCA\Onlyoffice\Listeners\ContentSecurityPolicyListener;
-use OCA\Onlyoffice\Listeners\DocumentUnsavedListener;
-use OCA\Onlyoffice\Listeners\FileListener;
-use OCA\Onlyoffice\Listeners\FileVersionsListener;
-use OCA\Onlyoffice\Listeners\ShareListener;
-use OCA\Onlyoffice\Listeners\UserListener;
-use OCA\Onlyoffice\Notifier;
-use OCA\Onlyoffice\Preview;
-use OCA\Onlyoffice\TemplateProvider;
+use OCA\Eurooffice\AppConfig;
+use OCA\Eurooffice\Controller\JobListController;
+use OCA\Eurooffice\Listeners\CreateFromTemplateListener;
+use OCA\Eurooffice\Listeners\FilesListener;
+use OCA\Eurooffice\Listeners\FileSharingListener;
+use OCA\Eurooffice\Listeners\DirectEditorListener;
+use OCA\Eurooffice\Listeners\ViewerListener;
+use OCA\Eurooffice\Listeners\WidgetListener;
+use OCA\Eurooffice\Events\DocumentUnsavedEvent;
+use OCA\Eurooffice\Hooks;
+use OCA\Eurooffice\Listeners\ContentSecurityPolicyListener;
+use OCA\Eurooffice\Listeners\DocumentUnsavedListener;
+use OCA\Eurooffice\Listeners\FileListener;
+use OCA\Eurooffice\Listeners\FileVersionsListener;
+use OCA\Eurooffice\Listeners\ShareListener;
+use OCA\Eurooffice\Listeners\UserListener;
+use OCA\Eurooffice\Notifier;
+use OCA\Eurooffice\Preview;
+use OCA\Eurooffice\TemplateProvider;
 use OCP\Files\Events\Node\NodeDeletedEvent;
 use OCP\Files\Events\Node\NodeWrittenEvent;
 use OCP\Share\Events\ShareDeletedEvent;
@@ -70,7 +70,7 @@ use OCP\User\Events\UserDeletedEvent;
 use OCP\Server;
 
 class Application extends App implements IBootstrap {
-    public const APP_ID = "onlyoffice";
+    public const APP_ID = "eurooffice";
 
     private readonly AppConfig $appConfig;
 

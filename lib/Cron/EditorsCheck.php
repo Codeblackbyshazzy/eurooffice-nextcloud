@@ -27,11 +27,11 @@
  *
  */
 
-namespace OCA\Onlyoffice\Cron;
+namespace OCA\Eurooffice\Cron;
 
-use OCA\Onlyoffice\AppConfig;
-use OCA\Onlyoffice\DocumentService;
-use OCA\Onlyoffice\EmailManager;
+use OCA\Eurooffice\AppConfig;
+use OCA\Eurooffice\DocumentService;
+use OCA\Eurooffice\EmailManager;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\BackgroundJob\IJob;
 use OCP\BackgroundJob\TimedJob;
@@ -130,7 +130,7 @@ class EditorsCheck extends TimedJob {
         $notification = $notificationManager->createNotification();
         $notification->setApp($this->appName)
             ->setDateTime(new \DateTime())
-            ->setObject("editorsCheck", $this->trans->t("ONLYOFFICE server is not available"))
+            ->setObject("editorsCheck", $this->trans->t("Euro-Office server is not available"))
             ->setSubject("editorscheck_info");
         foreach ($this->getUsersToNotify() as $uid) {
             $notification->setUser($uid);

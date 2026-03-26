@@ -27,7 +27,7 @@
  *
  */
 
-namespace OCA\Onlyoffice;
+namespace OCA\Eurooffice;
 
 use OCP\Http\Client\IClientService;
 use OCP\IL10N;
@@ -37,14 +37,14 @@ use Psr\Log\LoggerInterface;
 /**
  * Class service connector to Document Service
  *
- * @package OCA\Onlyoffice
+ * @package OCA\Eurooffice
  */
 class DocumentService {
 
     /**
      * Application name
      */
-    private static string $appName = "onlyoffice";
+    private static string $appName = "eurooffice";
 
     public function __construct(
         private readonly IL10N $trans,
@@ -122,7 +122,7 @@ class DocumentService {
         $documentServerUrl = $this->appConfig->getDocumentServerInternalUrl();
 
         if (empty($documentServerUrl)) {
-            throw new \Exception($this->trans->t("ONLYOFFICE app is not configured. Please contact admin"));
+            throw new \Exception($this->trans->t("Euro-Office app is not configured. Please contact admin"));
         }
 
         $urlToConverter = $documentServerUrl . "converter";
@@ -253,7 +253,7 @@ class DocumentService {
         $documentServerUrl = $this->appConfig->getDocumentServerInternalUrl();
 
         if (empty($documentServerUrl)) {
-            throw new \Exception($this->trans->t("ONLYOFFICE app is not configured. Please contact admin"));
+            throw new \Exception($this->trans->t("Euro-Office app is not configured. Please contact admin"));
         }
 
         $urlHealthcheck = $documentServerUrl . "healthcheck";
@@ -273,7 +273,7 @@ class DocumentService {
         $documentServerUrl = $this->appConfig->getDocumentServerInternalUrl();
 
         if (empty($documentServerUrl)) {
-            throw new \Exception($this->trans->t("ONLYOFFICE app is not configured. Please contact admin"));
+            throw new \Exception($this->trans->t("Euro-Office app is not configured. Please contact admin"));
         }
 
         $urlCommand = $documentServerUrl . "coauthoring/CommandService.ashx";
@@ -385,7 +385,7 @@ class DocumentService {
         try {
             if (preg_match("/^https:\/\//i", (string) $this->urlGenerator->getAbsoluteURL("/"))
                 && preg_match("/^http:\/\//i", $this->appConfig->getDocumentServerUrl())) {
-                throw new \Exception($this->trans->t("Mixed Active Content is not allowed. HTTPS address for ONLYOFFICE Docs is required."));
+                throw new \Exception($this->trans->t("Mixed Active Content is not allowed. HTTPS address for Euro-Office is required."));
             }
         } catch (\Exception $e) {
             $this->logger->error("Protocol on check error", ['exception' => $e]);

@@ -27,10 +27,10 @@
  *
  */
 
-namespace OCA\Onlyoffice\Command;
+namespace OCA\Eurooffice\Command;
 
-use OCA\Onlyoffice\AppConfig;
-use OCA\Onlyoffice\DocumentService;
+use OCA\Eurooffice\AppConfig;
+use OCA\Eurooffice\DocumentService;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -50,7 +50,7 @@ class DocumentServer extends Command {
      */
     protected function configure(): void {
         $this
-            ->setName("onlyoffice:documentserver")
+            ->setName("eurooffice:documentserver")
             ->setDescription("Manage document server")
             ->addOption(
                 "check",

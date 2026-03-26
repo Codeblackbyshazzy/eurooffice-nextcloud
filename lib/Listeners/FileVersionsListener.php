@@ -27,13 +27,13 @@
  *
  */
 
-namespace OCA\Onlyoffice\Listeners;
+namespace OCA\Eurooffice\Listeners;
 
 use Exception;
 use OCA\Files_Versions\Events\VersionRestoredEvent;
 use OCA\Files_Versions\Versions\IVersion;
-use OCA\Onlyoffice\FileVersions;
-use OCA\Onlyoffice\KeyManager;
+use OCA\Eurooffice\FileVersions;
+use OCA\Eurooffice\KeyManager;
 use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;
 use Psr\Log\LoggerInterface;

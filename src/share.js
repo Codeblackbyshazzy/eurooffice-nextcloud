@@ -39,7 +39,7 @@ import AppDarkSvg from '../img/app-dark.svg?raw';
 (function($, OC) {
 
 	OCA.Onlyoffice = _.extend({
-		AppName: 'onlyoffice',
+		AppName: 'eurooffice',
 	}, OCA.Onlyoffice)
 
 	OCA.Onlyoffice.Permissions = {
@@ -53,7 +53,7 @@ import AppDarkSvg from '../img/app-dark.svg?raw';
 	let tabcontext = null
 
 	const advancedTab = new OCA.Files.Sidebar.Tab({
-		id: 'onlyofficeSharingTabView',
+		id: 'euroofficeSharingTabView',
 		name: t(OCA.Onlyoffice.AppName, 'Advanced'),
 		iconSvg: AppDarkSvg,
 
@@ -108,13 +108,13 @@ import AppDarkSvg from '../img/app-dark.svg?raw';
 		let templateItem = null
 
 		const getContainer = function() {
-			return $el.find('.onlyoffice-share-container')
+			return $el.find('.eurooffice-share-container')
 		}
 
 		const getTemplate = function(callback) {
-			if ($el.find('.onlyoffice-share-container').length === 0) {
-				$('<ul>', { class: 'onlyoffice-share-container' }).appendTo($el)
-				$('<div>').html(t(OCA.Onlyoffice.AppName, 'Provide advanced document permissions using ONLYOFFICE Docs')).prependTo($el)
+			if ($el.find('.eurooffice-share-container').length === 0) {
+				$('<ul>', { class: 'eurooffice-share-container' }).appendTo($el)
+				$('<div>').html(t(OCA.Onlyoffice.AppName, 'Provide advanced document permissions using Euro-Office')).prependTo($el)
 			}
 
 			if (templateItem) {
@@ -136,7 +136,7 @@ import AppDarkSvg from '../img/app-dark.svg?raw';
 					const itemNode = templateItem.clone()
 					const descNode = itemNode.find('span')
 					const avatar = itemNode.find('img')
-					const actionButton = itemNode.find('#onlyoffice-share-action')
+					const actionButton = itemNode.find('#eurooffice-share-action')
 
 					let avatarSrc = '/index.php/avatar/' + extra.shareWith + '/32?v=0'
 					let label = extra.shareWithName
@@ -154,7 +154,7 @@ import AppDarkSvg from '../img/app-dark.svg?raw';
 						label = t(OCA.Onlyoffice.AppName, 'Share link')
 
 						const avatarWrapper = itemNode.find('.avatardiv')
-						avatarWrapper.addClass('onlyoffice-share-link-avatar')
+						avatarWrapper.addClass('eurooffice-share-link-avatar')
 
 						avatarSrc = '/core/img/actions/public.svg'
 					}
@@ -213,10 +213,10 @@ import AppDarkSvg from '../img/app-dark.svg?raw';
 		}
 
 		const listenOuterClicks = function(event) {
-			if (event.target.id === 'onlyoffice-share-action') {
+			if (event.target.id === 'eurooffice-share-action') {
 				return
 			}
-			const target = document.querySelector('#onlyoffice-share-popup-menu')
+			const target = document.querySelector('#eurooffice-share-popup-menu')
 			if (target) {
 				const eventPath = event.composedPath().includes(target)
 				if (!eventPath && typeof (permissionsMenu) !== 'undefined' && permissionsMenu.isOpen()) {
@@ -231,7 +231,7 @@ import AppDarkSvg from '../img/app-dark.svg?raw';
 			}
 			window.addEventListener('click', listenOuterClicks)
 
-			const shareNode = $(e.target).closest('.onlyoffice-share-item')[0]
+			const shareNode = $(e.target).closest('.eurooffice-share-item')[0]
 			const shareId = shareNode.id
 
 			if (permissionsMenu.isOpen()) {
@@ -258,9 +258,9 @@ import AppDarkSvg from '../img/app-dark.svg?raw';
 							const target = $(e.target)[0]
 							if (!permissionsMenu
 								|| !permissionsMenu.isOpen()
-								|| target.id === 'onlyoffice-share-action'
-								|| target.className === 'onlyoffice-share-label'
-								|| target.closest('.onlyoffice-share-action')) {
+								|| target.id === 'eurooffice-share-action'
+								|| target.className === 'eurooffice-share-label'
+								|| target.closest('.eurooffice-share-action')) {
 								return
 							}
 
@@ -319,15 +319,15 @@ import AppDarkSvg from '../img/app-dark.svg?raw';
 
 		const getPermissionMenu = function() {
 			const popup = $('<div>', {
-				class: 'popovermenu onlyoffice-share-popup',
-				id: 'onlyoffice-share-popup-menu',
+				class: 'popovermenu eurooffice-share-popup',
+				id: 'eurooffice-share-popup-menu',
 			}).append($('<ul>'), {
 				id: -1,
 			})
 
 			const appendItem = function(checked, extra, name) {
 				const item = $('<li>').append($('<span>', {
-					class: 'onlyoffice-share-action',
+					class: 'eurooffice-share-action',
 				}).append($('<input>', {
 					id: 'extra-' + extra,
 					type: 'checkbox',
@@ -336,7 +336,7 @@ import AppDarkSvg from '../img/app-dark.svg?raw';
 				})).append($('<label>', {
 					for: 'extra-' + extra,
 					text: name,
-					class: 'onlyoffice-share-label',
+					class: 'eurooffice-share-label',
 				})))
 
 				const input = item.find('input')

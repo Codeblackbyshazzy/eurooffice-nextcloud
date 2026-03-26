@@ -27,11 +27,11 @@
  *
  */
 
-namespace OCA\Onlyoffice\Listeners;
+namespace OCA\Eurooffice\Listeners;
 
 use OCA\Files\Event\LoadAdditionalScriptsEvent;
-use OCA\Onlyoffice\AppConfig;
-use OCA\Onlyoffice\SettingsData;
+use OCA\Eurooffice\AppConfig;
+use OCA\Eurooffice\SettingsData;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;
@@ -56,25 +56,25 @@ class FilesListener implements IEventListener {
         if (!empty($this->appConfig->getDocumentServerUrl())
             && $this->appConfig->settingsAreSuccessful()
             && $this->appConfig->isUserAllowedToUse()) {
-            Util::addScript("onlyoffice", "onlyoffice-desktop");
-            Util::addScript("onlyoffice", "onlyoffice-main");
-            Util::addScript("onlyoffice", "onlyoffice-template");
+            Util::addScript("eurooffice", "eurooffice-desktop");
+            Util::addScript("eurooffice", "eurooffice-main");
+            Util::addScript("eurooffice", "eurooffice-template");
 
             if ($this->appConfig->getSameTab()) {
-                Util::addScript("onlyoffice", "onlyoffice-listener");
+                Util::addScript("eurooffice", "eurooffice-listener");
             }
 
             if ($this->appConfig->getAdvanced()
                 && Server::get(\OCP\App\IAppManager::class)->isEnabledForAnyone("files_sharing")) {
-                Util::addScript("onlyoffice", "onlyoffice-share");
-                Util::addStyle("onlyoffice", "share");
+                Util::addScript("eurooffice", "eurooffice-share");
+                Util::addStyle("eurooffice", "share");
             }
 
             $this->initialState->provideLazyInitialState("settings", fn() => Server::get(SettingsData::class));
 
-            Util::addStyle("onlyoffice", "main");
-            Util::addStyle("onlyoffice", "template");
-            Util::addStyle("onlyoffice", "format");
+            Util::addStyle("eurooffice", "main");
+            Util::addStyle("eurooffice", "template");
+            Util::addStyle("eurooffice", "format");
         }
     }
 }

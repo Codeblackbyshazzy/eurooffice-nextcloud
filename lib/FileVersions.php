@@ -27,7 +27,7 @@
  *
  */
 
-namespace OCA\Onlyoffice;
+namespace OCA\Eurooffice;
 
 use OC\Files\Node\File;
 use OC\Files\View;
@@ -41,14 +41,14 @@ use OCP\IUser;
 /**
  * File versions
  *
- * @package OCA\Onlyoffice
+ * @package OCA\Eurooffice
  */
 class FileVersions {
 
     /**
      * Application name
      */
-    private static string $appName = "onlyoffice";
+    private static string $appName = "eurooffice";
 
     /**
      * Changes file extension
@@ -149,7 +149,7 @@ class FileVersions {
      * @return array
      */
     public static function getHistoryData(?string $ownerId, ?FileInfo $fileInfo, string $versionId, ?string $prevVersion): ?array {
-        $logger = \OCP\Log\logger('onlyoffice');
+        $logger = \OCP\Log\logger('eurooffice');
 
         if ($ownerId === null || $fileInfo === null) {
             return null;
@@ -245,7 +245,7 @@ class FileVersions {
         $root = \OCP\Server::get(IRootFolder::class);
 
         $changes = new File($root, $rootView, $view->getAbsolutePath($changesPath), $changesInfo);
-        \OCP\Log\logger('onlyoffice')->debug("getChangesFile: $fileId for $ownerId get changes $changesPath", ["app" => self::$appName]);
+        \OCP\Log\logger('eurooffice')->debug("getChangesFile: $fileId for $ownerId get changes $changesPath", ["app" => self::$appName]);
 
         return $changes;
     }
@@ -259,7 +259,7 @@ class FileVersions {
      * @param string $prevVersion - previous version for check
      */
     public static function saveHistory(?FileInfo $fileInfo, ?array $history, ?string $changes, ?string $prevVersion): void {
-        $logger = \OCP\Log\logger('onlyoffice');
+        $logger = \OCP\Log\logger('eurooffice');
 
         if ($fileInfo === null) {
             return;
@@ -307,7 +307,7 @@ class FileVersions {
      * @param FileInfo $fileInfo - file info
      */
     public static function deleteAllVersions(?string $ownerId, ?FileInfo $fileInfo = null): void {
-        $logger = \OCP\Log\logger('onlyoffice');
+        $logger = \OCP\Log\logger('eurooffice');
         $fileId = null;
         if ($fileInfo !== null) {
             $fileId = $fileInfo->getId();
@@ -339,7 +339,7 @@ class FileVersions {
             return;
         }
 
-        $logger = \OCP\Log\logger('onlyoffice');
+        $logger = \OCP\Log\logger('eurooffice');
         $fileId = $fileInfo->getId();
         $logger->debug("deleteVersion $fileId ($versionId)", ["app" => self::$appName]);
 
@@ -365,7 +365,7 @@ class FileVersions {
      * Clear all version history
      */
     public static function clearHistory(): void {
-        $logger = \OCP\Log\logger('onlyoffice');
+        $logger = \OCP\Log\logger('eurooffice');
 
         $userDatabase = new Database();
         $userIds = $userDatabase->getUsers();
@@ -395,7 +395,7 @@ class FileVersions {
      * @param IUser $author - version author
      */
     public static function saveAuthor(?FileInfo $fileInfo, ?IUser $author): void {
-        $logger = \OCP\Log\logger('onlyoffice');
+        $logger = \OCP\Log\logger('eurooffice');
 
         if ($fileInfo === null || $author === null) {
             return;
@@ -460,7 +460,7 @@ class FileVersions {
         $authorDataString = $view->file_get_contents($authorPath);
         $author = json_decode((string) $authorDataString, true);
 
-        \OCP\Log\logger('onlyoffice')->debug("getAuthor: $fileId v.$versionId for $ownerId get author $authorPath", ["app" => self::$appName]);
+        \OCP\Log\logger('eurooffice')->debug("getAuthor: $fileId v.$versionId for $ownerId get author $authorPath", ["app" => self::$appName]);
 
         return $author;
     }
@@ -473,7 +473,7 @@ class FileVersions {
      * @param string $versionId - file version
      */
     public static function deleteAuthor(?string $ownerId, ?FileInfo $fileInfo, ?string $versionId): void {
-        $logger = \OCP\Log\logger('onlyoffice');
+        $logger = \OCP\Log\logger('eurooffice');
 
         $fileId = $fileInfo->getId();
 

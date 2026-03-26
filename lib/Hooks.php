@@ -27,7 +27,7 @@
  *
  */
 
-namespace OCA\Onlyoffice;
+namespace OCA\Eurooffice;
 
 use OC\Files\Filesystem;
 use OCP\Util;
@@ -35,7 +35,7 @@ use OCP\Util;
 /**
  * The class to handle the filesystem hooks
  *
- * @package OCA\Onlyoffice
+ * @package OCA\Eurooffice
  */
 class Hooks {
 
@@ -74,7 +74,7 @@ class Hooks {
             FileVersions::deleteVersion($ownerId, $fileInfo, $versionId);
             FileVersions::deleteAuthor($ownerId, $fileInfo, $versionId);
         } catch (\Exception $e) {
-            \OCP\Log\logger('onlyoffice')->error("Hook: fileVersionDelete " . json_encode($params), ['exception' => $e]);
+            \OCP\Log\logger('eurooffice')->error("Hook: fileVersionDelete " . json_encode($params), ['exception' => $e]);
         }
     }
 }

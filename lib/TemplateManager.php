@@ -27,7 +27,7 @@
  *
  */
 
-namespace OCA\Onlyoffice;
+namespace OCA\Eurooffice;
 
 use OCP\Files\File;
 use OCP\Files\Folder;
@@ -40,14 +40,14 @@ use OCP\Server;
 /**
  * Template manager
  *
- * @package OCA\Onlyoffice
+ * @package OCA\Eurooffice
  */
 class TemplateManager {
 
     /**
      * Application name
      */
-    private static string $appName = "onlyoffice";
+    private static string $appName = "eurooffice";
 
     /**
      * Template folder name
@@ -96,7 +96,7 @@ class TemplateManager {
      * Get template file
      */
     public static function getTemplate(int $templateId): ?File {
-        $logger = \OCP\Log\logger('onlyoffice');
+        $logger = \OCP\Log\logger('eurooffice');
 
         if (empty($templateId)) {
             $logger->info("templateId is empty", ["app" => self::$appName]);

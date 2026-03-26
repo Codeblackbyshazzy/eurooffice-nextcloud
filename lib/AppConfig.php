@@ -27,7 +27,7 @@
  *
  */
 
-namespace OCA\Onlyoffice;
+namespace OCA\Eurooffice;
 
 use \DateInterval;
 use \DateTime;
@@ -37,13 +37,13 @@ use OCP\ICache;
 use OCP\ICacheFactory;
 use OCP\IConfig;
 use Psr\Log\LoggerInterface;
-use OCA\Onlyoffice\AppInfo\Application;
+use OCA\Eurooffice\AppInfo\Application;
 use OCP\IAppConfig;
 
 /**
  * Application configutarion
  *
- * @package OCA\Onlyoffice
+ * @package OCA\Eurooffice
  */
 class AppConfig {
     /**
@@ -1087,7 +1087,7 @@ class AppConfig {
             // group unknown -> error and allow nobody
             $group = \OCP\Server::get(\OCP\IGroupManager::class)->get($groupName);
             if ($group === null) {
-                \OCP\Log\logger('onlyoffice')->error("Group is unknown $groupName", ["app" => $this->appName]);
+                \OCP\Log\logger('eurooffice')->error("Group is unknown $groupName", ["app" => $this->appName]);
                 $this->setLimitGroups(array_diff($groups, [$groupName]));
             } elseif ($group->inGroup($user)) {
                 return true;
@@ -1294,12 +1294,12 @@ class AppConfig {
      */
     private function buildOnlyofficeFormats(): array {
         try {
-            $onlyofficeFormats = $this->getFormats();
+            $euroofficeFormats = $this->getFormats();
             $result = [];
             $additionalFormats = $this->getAdditionalFormatAttributes();
 
-            if ($onlyofficeFormats !== false) {
-                foreach ($onlyofficeFormats as $onlyOfficeFormat) {
+            if ($euroofficeFormats !== false) {
+                foreach ($euroofficeFormats as $onlyOfficeFormat) {
                     if ($onlyOfficeFormat["name"]
                         && $onlyOfficeFormat["mime"]
                         && $onlyOfficeFormat["type"]
@@ -1390,10 +1390,10 @@ class AppConfig {
      * @param string $ext - format name
      */
     public function getMimeType(string $ext): string {
-        $onlyofficeFormats = $this->getFormats();
+        $euroofficeFormats = $this->getFormats();
         $result = "text/plain";
 
-        foreach ($onlyofficeFormats as $onlyOfficeFormat) {
+        foreach ($euroofficeFormats as $onlyOfficeFormat) {
             if ($onlyOfficeFormat["name"] === $ext && !empty($onlyOfficeFormat["mime"])) {
                 $result = $onlyOfficeFormat["mime"][0];
                 break;

@@ -27,7 +27,7 @@
  *
  */
 
-namespace OCA\Onlyoffice;
+namespace OCA\Eurooffice;
 
 use OCP\AppFramework\Http\ContentSecurityPolicy;
 use OCP\AppFramework\Http\Response;
@@ -40,7 +40,7 @@ use Psr\Log\LoggerInterface;
 /**
  * Direct Editor
  *
- * @package OCA\Onlyoffice
+ * @package OCA\Eurooffice
  */
 class DirectEditor implements IEditor {
 
@@ -63,7 +63,7 @@ class DirectEditor implements IEditor {
      * Return a readable name for the editor
      */
     public function getName(): string {
-        return "ONLYOFFICE";
+        return "Euro-Office";
     }
 
     /**
@@ -154,7 +154,7 @@ class DirectEditor implements IEditor {
 
             if (empty($documentServerUrl)) {
                 $this->logger->error("documentServerUrl is empty");
-                return $this->renderError($this->trans->t("ONLYOFFICE app is not configured. Please contact admin"));
+                return $this->renderError($this->trans->t("Euro-Office app is not configured. Please contact admin"));
             }
 
             $directToken = $this->crypt->getHash([

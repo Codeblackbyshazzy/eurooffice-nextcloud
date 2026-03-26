@@ -27,11 +27,11 @@
  *
  */
 
-namespace OCA\Onlyoffice\Controller;
+namespace OCA\Eurooffice\Controller;
 
 use OCA\Files_Sharing\SharedStorage;
-use OCA\Onlyoffice\AppConfig;
-use OCA\Onlyoffice\ExtraPermissions;
+use OCA\Eurooffice\AppConfig;
+use OCA\Eurooffice\ExtraPermissions;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Http\Attribute\NoAdminRequired;

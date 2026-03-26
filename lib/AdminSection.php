@@ -27,7 +27,7 @@
  *
  */
 
-namespace OCA\Onlyoffice;
+namespace OCA\Eurooffice;
 
 use OCP\IURLGenerator;
 use OCP\Settings\IIconSection;
@@ -43,21 +43,21 @@ class AdminSection implements IIconSection {
      * Path to an 16*16 icons
      */
     public function getIcon(): string {
-        return $this->urlGenerator->imagePath("onlyoffice", "app-dark.svg");
+        return $this->urlGenerator->imagePath("eurooffice", "app-dark.svg");
     }
 
     /**
      * ID of the section
      */
     public function getID(): string {
-        return "onlyoffice";
+        return "eurooffice";
     }
 
     /**
      * Name of the section
      */
     public function getName(): string {
-        return "ONLYOFFICE";
+        return "Euro-Office";
     }
 
     /**

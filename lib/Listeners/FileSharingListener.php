@@ -27,11 +27,11 @@
  *
  */
 
-namespace OCA\Onlyoffice\Listeners;
+namespace OCA\Eurooffice\Listeners;
 
 use OCA\Files_Sharing\Event\BeforeTemplateRenderedEvent;
-use OCA\Onlyoffice\AppConfig;
-use OCA\Onlyoffice\SettingsData;
+use OCA\Eurooffice\AppConfig;
+use OCA\Eurooffice\SettingsData;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;
@@ -67,15 +67,15 @@ class FileSharingListener implements IEventListener {
             }
 
             if ($this->appConfig->getSameTab() || $shareType === "file") {
-                Util::addScript("onlyoffice", "onlyoffice-listener");
+                Util::addScript("eurooffice", "eurooffice-listener");
             }
 
             $this->initialState->provideLazyInitialState("settings", fn() => Server::get(SettingsData::class));
 
-            Util::addScript("onlyoffice", "onlyoffice-main");
-            Util::addScript("onlyoffice", "onlyoffice-template");
-            Util::addStyle("onlyoffice", "main");
-            Util::addStyle("onlyoffice", "format");
+            Util::addScript("eurooffice", "eurooffice-main");
+            Util::addScript("eurooffice", "eurooffice-template");
+            Util::addStyle("eurooffice", "main");
+            Util::addStyle("eurooffice", "format");
         }
     }
 }

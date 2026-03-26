@@ -27,7 +27,7 @@
  *
  */
 
-namespace OCA\Onlyoffice;
+namespace OCA\Eurooffice;
 
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
@@ -36,7 +36,7 @@ use UnexpectedValueException;
 /**
  * Token generator
  *
- * @package OCA\Onlyoffice
+ * @package OCA\Eurooffice
  */
 class Crypt {
 

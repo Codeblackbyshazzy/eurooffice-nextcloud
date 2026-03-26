@@ -27,7 +27,7 @@
  *
  */
 
-namespace OCA\Onlyoffice;
+namespace OCA\Eurooffice;
 
 use OCA\Files_Sharing\External\Storage as SharingExternalStorage;
 use OCP\Files\File;
@@ -38,19 +38,19 @@ use OCP\Server;
 /**
  * Remote instance manager
  *
- * @package OCA\Onlyoffice
+ * @package OCA\Eurooffice
  */
 class RemoteInstance {
 
     /**
      * App name
      */
-    private const APP_NAME = "onlyoffice";
+    private const APP_NAME = "eurooffice";
 
     /**
      * Table name
      */
-    private const TABLENAME_KEY = "onlyoffice_instance";
+    private const TABLENAME_KEY = "eurooffice_instance";
 
     /**
      * Time to live of remote instance (12 hours)
@@ -121,7 +121,7 @@ class RemoteInstance {
      * @return bool
      */
     public static function healthCheck(string $remote): bool {
-        $logger = \OCP\Log\logger('onlyoffice');
+        $logger = \OCP\Log\logger('eurooffice');
         $remote = rtrim($remote, "/") . "/";
 
         if (array_key_exists($remote, self::$healthRemote)) {
@@ -174,7 +174,7 @@ class RemoteInstance {
      * @return string
      */
     public static function getRemoteKey(File $file): ?string {
-        $logger = \OCP\Log\logger('onlyoffice');
+        $logger = \OCP\Log\logger('eurooffice');
 
         $remote = rtrim((string) $file->getStorage()->getRemote(), "/") . "/";
         $shareToken = $file->getStorage()->getToken();
@@ -226,7 +226,7 @@ class RemoteInstance {
      * @return bool
      */
     public static function lockRemoteKey(File $file, bool $lock, bool $fs): bool {
-        $logger = \OCP\Log\logger('onlyoffice');
+        $logger = \OCP\Log\logger('eurooffice');
         $action = $lock ? "lock" : "unlock";
 
         $remote = rtrim((string) $file->getStorage()->getRemote(), "/") . "/";

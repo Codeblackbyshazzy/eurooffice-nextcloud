@@ -27,17 +27,17 @@
  *
  */
 
-    style("onlyoffice", "editor");
-    \OCP\Util::addScript("onlyoffice", "onlyoffice-desktop", 'core');
+    style("eurooffice", "editor");
+    \OCP\Util::addScript("eurooffice", "eurooffice-desktop", 'core');
 if (!empty($_["directToken"])) {
-    \OCP\Util::addScript("onlyoffice", "onlyoffice-directeditor", 'core');
+    \OCP\Util::addScript("eurooffice", "eurooffice-directeditor", 'core');
 }
-    \OCP\Util::addScript("onlyoffice", "onlyoffice-editor", 'core');
+    \OCP\Util::addScript("eurooffice", "eurooffice-editor", 'core');
 ?>
 
 <div id="app"
     <?php if (!empty($_["inviewer"])) { ?>
-        class="onlyoffice-inviewer"
+        class="eurooffice-inviewer"
     <?php } ?>>
 
     <div id="iframeEditor"

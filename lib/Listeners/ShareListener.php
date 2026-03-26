@@ -27,10 +27,10 @@
  *
  */
 
-namespace OCA\Onlyoffice\Listeners;
+namespace OCA\Eurooffice\Listeners;
 
 use Exception;
-use OCA\Onlyoffice\ExtraPermissions;
+use OCA\Eurooffice\ExtraPermissions;
 use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;
 use OCP\Share\Events\ShareDeletedEvent;

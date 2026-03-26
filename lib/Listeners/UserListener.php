@@ -27,10 +27,10 @@
  *
  */
 
-namespace OCA\Onlyoffice\Listeners;
+namespace OCA\Eurooffice\Listeners;
 
 use Exception;
-use OCA\Onlyoffice\FileVersions;
+use OCA\Eurooffice\FileVersions;
 use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;
 use OCP\IUser;
