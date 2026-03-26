@@ -1,4 +1,4 @@
-# ![](screenshots/icon.png) Euro-Office app for Nextcloud
+# ![](screenshots/document.png) Euro-Office app for Nextcloud
 
 This app enables users to edit office documents from [Nextcloud](https://nextcloud.com) using ONLYOFFICE Docs packaged as Document Server - [Community or Enterprise Edition](#eurooffice-docs-editions).
 
