@@ -41,26 +41,13 @@ Euro-Office Document Server and Nextcloud can be installed either on different c
 
 ## Installing Euro-Office app for Nextcloud 📥
 
-The Nextcloud administrator can install the app from the in-built application market.
-For that go to the user name and select **Apps**.
-
-After that find **Euro-Office** in the list of available applications and install it.
-
-If the server with the Nextcloud installed does not have an Internet access, or if you need it for some other reason, the administrator can install the application manually.
 To start using Euro-Office Document Server with Nextcloud, the following steps must be performed:
 
 1. Go to the Nextcloud server _apps/_ directory (or some other directory [used](https://docs.nextcloud.com/server/latest/admin_manual/apps_management.html#using-custom-app-directories)):
     ```bash
     cd apps/
     ```
-2. Get the Euro-Office app for Nextcloud.
-There are several ways to do that:
-
-    a. Download the latest signed version from the official store for [Nextcloud](https://apps.nextcloud.com/apps/eurooffice).
-
-    b. Or you can download the latest signed version from the application [release page](https://github.com/Euro-Office/eurooffice-nextcloud/releases) on GitHub.
-
-    c. Or you can clone the application source code and compile it yourself:
+2. Get the Euro-Office app for Nextcloud:
     ```bash
     git clone https://github.com/Euro-Office/eurooffice-nextcloud.git eurooffice
     cd eurooffice
